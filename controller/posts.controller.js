@@ -11,13 +11,18 @@ exports.create = async(req, res) =>{
         return res.status(400).json({message: "Veuillez saisir un titre"})
     }
 
-    let post = await Post.create({
+
+    let post = {
         texte: req.body.texte,
         created_by: req.body.user,
         date: req.body.date,
         comment: [],
-        picture: req.body.picture
-    });
+    }
+    if(req.file){
+        post.picture = './picture/' + req.file.filename;
+    }
+
+    let createpost = await Post.create(post);
 
     res.status(201).json(post);
 
