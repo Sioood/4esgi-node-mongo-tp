@@ -24,7 +24,11 @@ exports.create = async(req, res) =>{
 }
 
 exports.getOne = async(req, res) =>{
-
+    let post = await Post.findOne({_id: req.params.id});
+    if(!post){
+        return res.status(404).json({error: "Publication introuvable"})
+    }
+    return res.status(200).json(post);
 }
 
 exports.editOne = async(req, res) =>{
