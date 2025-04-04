@@ -2,7 +2,7 @@ const Comment = require("../model/user.model");
 const Post = require("../model/post.model");
 const User = require("../model/user.model");
 
-const createComment = async (req, res) => {
+exports.createComment = async (req, res) => {
     const postID = req.params.id;
     const title = req.body.title;
     const content = req.body;
@@ -25,7 +25,7 @@ const createComment = async (req, res) => {
     return res.status(201).json({message: "Votre commentaire a bien été ajouté"});
 };
 
-const editComment = async (req, res) => {
+exports.editComment = async (req, res) => {
     const commentId = req.params.id;
     const content = req.body;
     let user = await User.findOne({_id: req.token._id})
@@ -42,7 +42,7 @@ const editComment = async (req, res) => {
     return res.status(201).json({message: "Votre commentaire a bien été modifié"});
 };
 
-const deleteComment = async (req, res) => {
+exports.deleteComment = async (req, res) => {
     const commentId = req.params.id;
     let comment = await Comment.findOne({_id: commentId});
     let user = await User.findOne({_id: req.token._id})
