@@ -3,7 +3,7 @@ const User = require("./../model/user.model.js");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 
-const signin = async (req, res) => {
+const register = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || email === "" || !password || password === "") {
@@ -51,4 +51,4 @@ const login = async (req, res) => {
   });
 };
 
-export { signin, login };
+module.exports = { register, login };
