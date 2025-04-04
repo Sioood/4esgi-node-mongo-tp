@@ -5,7 +5,7 @@ const User = require("../model/user.model");
 exports.createComment = async (req, res) => {
     const postID = req.params.id;
     const title = req.body.title;
-    const content = req.body;
+    const content = req.body.content;
 
     if(!postID || !content || !title) return res.status(400).json({message: "Le contenu du commentaire est nécéssaire pour continuer"});
 
@@ -30,7 +30,7 @@ exports.createComment = async (req, res) => {
 
 exports.editComment = async (req, res) => {
     const commentId = req.params.id;
-    const content = req.body;
+    const content = req.body.content;
     let user = await User.findOne({_id: req.token._id})
     if(comment.created_by !== user._id){
         return res.status(404).json({error: "L'utilisateur n'a pas les droits de modifier ce commentaire"})
