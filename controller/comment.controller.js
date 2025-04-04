@@ -26,9 +26,12 @@ const createComment = async (req, res) => {
 };
 
 const editComment = async (req, res) => {
-    //TODO: Logique du commentaire editable seulement pour l'auteur
-    const commentID = req.params.id;
+    const commentId = req.params.id;
     const content = req.body;
+    let user = await User.findOne({_id: req.token._id})
+    if(comment.created_by !== user._id){
+        return res.status(404).json({error: "L'utilisateur n'a pas les droits de motifier ce commentaire"})
+    }
     if(!commentId || !content) return res.status(400).json({message: "Le contenu du commentaire est nécéssaire pour continuer"});
 
     let comment = await Comment.findOne({_id: commentId});
@@ -40,9 +43,12 @@ const editComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
-    //TODO: Logique du commentaire supprimable seulement pour l'auteur
-    const commentID = req.params.id;
+    const commentId = req.params.id;
     let comment = await Comment.findOne({_id: commentId});
+    let user = await User.findOne({_id: req.token._id})
+    if(comment.created_by !== user._id){
+        return res.status(404).json({error: "L'utilisateur n'a pas les droits de motifier ce commentaire"})
+    }
     if (!comment) return res.status(404).json({message: "Le commentaire est introuvable"});
 
     comment.content = content;
