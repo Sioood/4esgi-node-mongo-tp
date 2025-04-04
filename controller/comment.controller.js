@@ -40,7 +40,6 @@ exports.editComment = async (req, res) => {
   const commentId = req.params.id;
   const content = req.body.content;
   const title = req.body.title;
-  let user = await User.findOne({ _id: req.token._id });
 
   if (!commentId || !content || !title)
     return res
