@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
-const {connect} = require('./database/connection.js');
+const { connect } = require('./database/connection.js');
+
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("./swagger-output.json");
 
 app.use(express.json());
 
@@ -25,5 +28,7 @@ app.use((req, res, next) => {
 app.use('/auth', authRoute);
 app.use('/posts', postRoute);
 app.use('/comment', commentRoute);
+
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 module.exports = app;
