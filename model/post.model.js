@@ -9,8 +9,7 @@ const post = new Schema({
     date: Date,
     comment: Array,
     picture: String
-
-    });
+});
     
 const Post = mongoose.model('Post', post);
 
