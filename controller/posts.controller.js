@@ -13,7 +13,7 @@ exports.create = async(req, res) =>{
 
     let post = await Post.create({
         texte: req.body.texte,
-        created_by: req.body.user,
+        user: req.body.user,
         date: req.body.date,
         comment: [],
         picture: req.body.picture
