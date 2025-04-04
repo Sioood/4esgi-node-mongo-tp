@@ -36,11 +36,11 @@ exports.editOne = async(req, res) =>{
     let post = await Post.findOne({_id: req.params.id})
     let user = await User.findOne({_id: req.token._id})
     if(!post){
-        return res.status(404).json({errror: "Post introuvable"})
+        return res.status(404).json({error: "Post introuvable"})
     }
 
     if(post.created_by !== user._id){
-        return res.status(404).json({error: "L'utilisateur n'a pas les droits de modifier ce post"})
+        return res.status(403).json({error: "L'utilisateur n'a pas les droits de modifier ce post"})
     }
 
     if(req.body.texte){
@@ -48,7 +48,7 @@ exports.editOne = async(req, res) =>{
     }
 
     if(req.file){
-        post.picture = './picture' + req.file.filename;
+        post.picture = './picture/' + req.file.filename;
     }
 
     try {
