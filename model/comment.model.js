@@ -6,7 +6,7 @@ const ObjectId = Schema.ObjectId;
 const comment = new Schema({
     title: String,
     text: String,
-    user: ObjectId,
+    created_by: ObjectId,
     post: ObjectId
 });
 
