@@ -53,5 +53,5 @@ const deleteComment = async (req, res) => {
 
     comment.content = content;
     comment.save();
-    res.status(201).json({message: "Votre commentaire a bien été supprimé"});
+    return res.status(201).json({message: "Votre commentaire a bien été supprimé"});
 };
