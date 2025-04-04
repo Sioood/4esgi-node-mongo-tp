@@ -13,19 +13,22 @@ exports.createComment = async (req, res) => {
     if (!post) return res.status(404).json({message: "Le post est introuvable"});
 
     try {
-        const newComment = await Comment.create({
-            title: title,
-            content: content,
-            user: req.token._id,
-            post: post.id
-        });
-    } catch (err) {
-        return res.status(500).json({message: "Erreur lors de la création du commentaire"});
-    }
-    return res.status(201).json({
+      const newComment = await Comment.create({
+        title: title,
+        content: content,
+        user: req.token._id,
+        post: post.id,
+      });
+      return res.status(201).json({
         message: "Votre commentaire a bien été ajouté",
-        comment: newComment
-    });
+        comment: newComment,
+      });
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ message: "Erreur lors de la création du commentaire" });
+    }
+
 };
 
 exports.editComment = async (req, res) => {
