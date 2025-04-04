@@ -12,6 +12,8 @@ const database = async () => {
 database();
 
 const authRoute = require("./routes/auth.route");
+const postRoute = require('./routes/post.route');
+const commentRoute = require("./routes/comment.route");
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,5 +23,7 @@ app.use((req, res, next) => {
 
 
 app.use('/auth', authRoute);
+app.use('/posts', postRoute);
+app.use('/comment', commentRoute);
 
 module.exports = app;
