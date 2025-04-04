@@ -50,7 +50,7 @@ exports.editComment = async (req, res) => {
       });
 
   let comment = await Comment.findOne({ _id: commentId });
-  if (comment.created_by !== user._id) {
+  if (comment.created_by.toString() !== req.token._id) {
     return res.status(404).json({
       error: "L'utilisateur n'a pas les droits de modifier ce commentaire",
     });
@@ -71,7 +71,7 @@ exports.deleteComment = async (req, res) => {
     const commentId = req.params.id;
     let comment = await Comment.findOne({_id: commentId});
     let user = await User.findOne({_id: req.token._id})
-    if(comment.created_by !== user._id){
+    if(comment.created_by.toString() !== user._id){
         return res.status(404).json({error: "L'utilisateur n'a pas les droits de modifier ce commentaire"})
     }
     if (!comment) return res.status(404).json({message: "Le commentaire est introuvable"});
