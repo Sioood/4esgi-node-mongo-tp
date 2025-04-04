@@ -5,7 +5,7 @@ const post = new Schema({
     texte: String,
     created_by: ObjectId,
     date: Date,
-    comment: ObjectId,
+    comment: Array,
     picture: String
 
     });
