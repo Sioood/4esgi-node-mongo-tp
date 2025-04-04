@@ -74,8 +74,8 @@ exports.deleteOne = async (req, res) => {
     return res.status(404).json({ error: "L'utilisateur n'a pas le droit de supprimer ce post." });
   }
     
-    // TODO supprimer tout les commentaires liés au post 
-    
+  await Comment.deleteMany({ post: post._id });
+  
   await Post.deleteOne({ _id: req.params.id });
   return res.status(200).json({ message: "Post supprimé" });
 };
