@@ -24,7 +24,7 @@ exports.create = async(req, res) =>{
 
     let createpost = await Post.create(post);
 
-    res.status(201).json(post);
+    res.status(201).json(createpost);
 
 
 }
