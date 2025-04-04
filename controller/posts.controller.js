@@ -86,7 +86,7 @@ exports.deleteOne = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  let postList = await Post.find();
+  let postList = await Post.find().sort({ date: -1 });
   if (!postList) {
     return res.status(404).json({ error: "Aucun post disponible" });
   }
