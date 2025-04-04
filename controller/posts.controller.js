@@ -40,7 +40,7 @@ exports.editOne = async(req, res) =>{
     }
 
     if(post.created_by !== user._id){
-        return res.status(404).json({error: "L'utilisateur n'a pas les droits de motifier ce post"})
+        return res.status(404).json({error: "L'utilisateur n'a pas les droits de modifier ce post"})
     }
 
     if(req.body.texte){
