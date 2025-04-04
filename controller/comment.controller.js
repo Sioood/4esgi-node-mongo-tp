@@ -22,7 +22,7 @@ const createComment = async (req, res) => {
     } catch (err) {
         return res.status(500).json({message: "Erreur lors de la création du commentaire"});
     }
-    res.status(201).json({message: "Votre commentaire a bien été ajouté"});
+    return res.status(201).json({message: "Votre commentaire a bien été ajouté"});
 };
 
 const editComment = async (req, res) => {
@@ -39,7 +39,7 @@ const editComment = async (req, res) => {
 
     comment.content = content;
 
-    res.status(201).json({message: "Votre commentaire a bien été modifié"});
+    return res.status(201).json({message: "Votre commentaire a bien été modifié"});
 };
 
 const deleteComment = async (req, res) => {
@@ -52,5 +52,6 @@ const deleteComment = async (req, res) => {
     if (!comment) return res.status(404).json({message: "Le commentaire est introuvable"});
 
     comment.content = content;
+    comment.save();
     res.status(201).json({message: "Votre commentaire a bien été supprimé"});
 };
