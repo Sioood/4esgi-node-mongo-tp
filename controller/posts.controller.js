@@ -1,9 +1,31 @@
-const Post = require("./../model/post.model.js");
-const User = require("./../model/user.model.js");
+const Post = require("../model/post.model.js");
 
-exports.create = async (req, res) => {};
+exports.create = async(req, res) =>{
 
-exports.getOne = async (req, res) => {};
+    if (!req.body.user) {
+        return res.status(400).json({message: "L'utilisateur n'existe pas"})
+    }
+
+    if (!req.body.texte || req.body.texte === "") {
+        return res.status(400).json({message: "Veuillez saisir un titre"})
+    }
+
+    let post = await Post.create({
+        texte: req.body.texte,
+        created_by: req.body.user,
+        date: req.body.date,
+        comment: [],
+        picture: req.body.picture
+    });
+
+    res.status(201).json(post);
+
+
+}
+
+exports.getOne = async(req, res) =>{
+
+}
 
 exports.editOne = async(req, res) =>{
     let post = await Post.findOne({_id: req.params.id})
