@@ -46,3 +46,6 @@ npm run dev
 ```bash
 npm run swagger
 ```
+
+## Voir la documentation de l'API
+Un fichier `swagger-output.json` est généré à la racine, après avoir exécuter `npm run swagger` celui-ci peut être vu et utilisé via `http://localhost:3000/doc`
