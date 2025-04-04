@@ -9,7 +9,7 @@ exports.editOne = async(req, res) =>{
     let post = await Post.findOne({_id: req.params.id})
     let user = await User.findOne({_id: req.token._id})
     if(!post){
-        return res.status(404).json({errror: "Post intrvable"})
+        return res.status(404).json({errror: "Post introuvable"})
     }
 
     if(post.created_by !== user._id){
