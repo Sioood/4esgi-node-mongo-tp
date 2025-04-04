@@ -1,6 +1,8 @@
 const {Schema} = require("mongoose");
 const mongoose = require("mongoose")
 
+const ObjectId = Schema.ObjectId;
+
 const post = new Schema({
     texte: String,
     created_by: ObjectId,
